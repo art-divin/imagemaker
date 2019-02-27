@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9B1387E2225EF1000CF59EA /* Locationer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B1387D2225EF1000CF59EA /* Locationer.swift */; };
 		C9C30E4F2225234D0085DADA /* Locationer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C30E452225234D0085DADA /* Locationer.framework */; };
 		C9C30E542225234D0085DADA /* LocationerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E532225234D0085DADA /* LocationerTests.swift */; };
 		C9C30E562225234D0085DADA /* Locationer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C30E482225234D0085DADA /* Locationer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9B1387D2225EF1000CF59EA /* Locationer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locationer.swift; sourceTree = "<group>"; };
 		C9C30E452225234D0085DADA /* Locationer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locationer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C30E482225234D0085DADA /* Locationer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locationer.h; sourceTree = "<group>"; };
 		C9C30E492225234D0085DADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				C9C30E482225234D0085DADA /* Locationer.h */,
+				C9B1387D2225EF1000CF59EA /* Locationer.swift */,
 				C9C30E492225234D0085DADA /* Info.plist */,
 			);
 			path = Locationer;
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					C9C30E442225234D0085DADA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					C9C30E4D2225234D0085DADA = {
 						CreatedOnToolsVersion = 10.1;
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B1387E2225EF1000CF59EA /* Locationer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +346,7 @@
 		C9C30E5A2225234D0085DADA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imagemaker.Locationer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,6 +373,7 @@
 		C9C30E5B2225234D0085DADA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +399,7 @@
 		C9C30E5D2225234D0085DADA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WP7B8WJ8Z;
 				INFOPLIST_FILE = LocationerTests/Info.plist;
@@ -409,6 +418,7 @@
 		C9C30E5E2225234D0085DADA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WP7B8WJ8Z;
 				INFOPLIST_FILE = LocationerTests/Info.plist;
