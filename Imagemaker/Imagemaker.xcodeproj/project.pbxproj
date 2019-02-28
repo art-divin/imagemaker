@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C921A2F02227C2F300485936 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C921A2EF2227C2F300485936 /* OAuth2.framework */; };
+		C921A2F12227C2F300485936 /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C921A2EF2227C2F300485936 /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9C30DF62225210A0085DADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF52225210A0085DADA /* AppDelegate.swift */; };
 		C9C30DF82225210A0085DADA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF72225210A0085DADA /* FirstViewController.swift */; };
 		C9C30DFA2225210A0085DADA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF92225210A0085DADA /* SecondViewController.swift */; };
@@ -26,7 +28,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C921A2F22227C2F300485936 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C921A2F12227C2F300485936 /* OAuth2.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C921A2EF2227C2F300485936 /* OAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C30DF22225210A0085DADA /* Imagemaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagemaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C30DF52225210A0085DADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9C30DF72225210A0085DADA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C921A2F02227C2F300485936 /* OAuth2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +79,7 @@
 		C9C30DE92225210A0085DADA = {
 			isa = PBXGroup;
 			children = (
+				C921A2EF2227C2F300485936 /* OAuth2.framework */,
 				C9C30DF42225210A0085DADA /* Imagemaker */,
 				C9C30E0B2225210C0085DADA /* ImagemakerTests */,
 				C9C30DF32225210A0085DADA /* Products */,
@@ -109,6 +128,7 @@
 				C9C30DEE2225210A0085DADA /* Sources */,
 				C9C30DEF2225210A0085DADA /* Frameworks */,
 				C9C30DF02225210A0085DADA /* Resources */,
+				C921A2F22227C2F300485936 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +169,11 @@
 				TargetAttributes = {
 					C9C30DF12225210A0085DADA = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C9C30E072225210C0085DADA = {
 						CreatedOnToolsVersion = 10.1;

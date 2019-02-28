@@ -7,12 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C921A2EE2227C22700485936 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C921A28F2227C20C00485936 /* OAuth2.framework */; };
+		C9B13880222672AE00CF59EA /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B1387F222672AE00CF59EA /* ImageProvider.swift */; };
+		C9B13882222672BE00CF59EA /* ImageProviderPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B13881222672BE00CF59EA /* ImageProviderPure.swift */; };
+		C9B138842226737200CF59EA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B138832226737200CF59EA /* Network.swift */; };
 		C9C30E2B222521860085DADA /* ImageProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C30E21222521860085DADA /* ImageProvider.framework */; };
 		C9C30E30222521860085DADA /* ImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E2F222521860085DADA /* ImageProviderTests.swift */; };
-		C9C30E32222521860085DADA /* ImageProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C30E24222521860085DADA /* ImageProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C921A28C2227C20C00485936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209471942772800736F1A;
+			remoteInfo = OAuth2macOS;
+		};
+		C921A28E2227C20C00485936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEDB8624193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
+		C921A2902227C20C00485936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 659854461C5B3BEA00237D39;
+			remoteInfo = OAuth2tvOS;
+		};
+		C921A2922227C20C00485936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209A219427DFE00736F1A;
+			remoteInfo = OAuth2Tests;
+		};
+		C921A2EC2227C22100485936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
 		C9C30E2C222521860085DADA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9C30E18222521860085DADA /* Project object */;
@@ -23,8 +61,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = OAuth2.xcodeproj; sourceTree = "<group>"; };
+		C9B1387F222672AE00CF59EA /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		C9B13881222672BE00CF59EA /* ImageProviderPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderPure.swift; sourceTree = "<group>"; };
+		C9B138832226737200CF59EA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C9C30E21222521860085DADA /* ImageProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9C30E24222521860085DADA /* ImageProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProvider.h; sourceTree = "<group>"; };
 		C9C30E25222521860085DADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C30E2A222521860085DADA /* ImageProviderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageProviderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C30E2F222521860085DADA /* ImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderTests.swift; sourceTree = "<group>"; };
@@ -36,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C921A2EE2227C22700485936 /* OAuth2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +92,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C921A1F922277FE700485936 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C921A1FB2227C20B00485936 /* OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */,
+			);
+			path = OAuth2;
+			sourceTree = SOURCE_ROOT;
+		};
+		C921A1FE2227C20B00485936 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C921A28D2227C20C00485936 /* OAuth2.framework */,
+				C921A28F2227C20C00485936 /* OAuth2.framework */,
+				C921A2912227C20C00485936 /* OAuth2.framework */,
+				C921A2932227C20C00485936 /* OAuth2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C9C30E17222521860085DADA = {
 			isa = PBXGroup;
 			children = (
 				C9C30E23222521860085DADA /* ImageProvider */,
 				C9C30E2E222521860085DADA /* ImageProviderTests */,
 				C9C30E22222521860085DADA /* Products */,
+				C921A1F922277FE700485936 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +140,11 @@
 		C9C30E23222521860085DADA /* ImageProvider */ = {
 			isa = PBXGroup;
 			children = (
-				C9C30E24222521860085DADA /* ImageProvider.h */,
+				C921A1FB2227C20B00485936 /* OAuth2 */,
 				C9C30E25222521860085DADA /* Info.plist */,
+				C9B1387F222672AE00CF59EA /* ImageProvider.swift */,
+				C9B138832226737200CF59EA /* Network.swift */,
+				C9B13881222672BE00CF59EA /* ImageProviderPure.swift */,
 			);
 			path = ImageProvider;
 			sourceTree = "<group>";
@@ -93,7 +165,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9C30E32222521860085DADA /* ImageProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +183,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C921A2ED2227C22100485936 /* PBXTargetDependency */,
 			);
 			name = ImageProvider;
 			productName = ImageProvider;
@@ -148,6 +220,7 @@
 				TargetAttributes = {
 					C9C30E20222521860085DADA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					C9C30E29222521860085DADA = {
 						CreatedOnToolsVersion = 10.1;
@@ -160,10 +233,18 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
+				Base,
 			);
 			mainGroup = C9C30E17222521860085DADA;
 			productRefGroup = C9C30E22222521860085DADA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C921A1FE2227C20B00485936 /* Products */;
+					ProjectRef = C921A1FD2227C20B00485936 /* OAuth2.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C9C30E20222521860085DADA /* ImageProvider */,
@@ -171,6 +252,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C921A28D2227C20C00485936 /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = C921A28C2227C20C00485936 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C921A28F2227C20C00485936 /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = C921A28E2227C20C00485936 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C921A2912227C20C00485936 /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = C921A2902227C20C00485936 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C921A2932227C20C00485936 /* OAuth2Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuth2Tests.xctest;
+			remoteRef = C921A2922227C20C00485936 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C9C30E1F222521860085DADA /* Resources */ = {
@@ -194,6 +306,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B13882222672BE00CF59EA /* ImageProviderPure.swift in Sources */,
+				C9B13880222672AE00CF59EA /* ImageProvider.swift in Sources */,
+				C9B138842226737200CF59EA /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +323,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C921A2ED2227C22100485936 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuth2iOS;
+			targetProxy = C921A2EC2227C22100485936 /* PBXContainerItemProxy */;
+		};
 		C9C30E2D222521860085DADA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C9C30E20222521860085DADA /* ImageProvider */;
@@ -341,6 +461,7 @@
 		C9C30E36222521860085DADA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +479,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imagemaker.ImageProvider;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,6 +488,7 @@
 		C9C30E37222521860085DADA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +514,7 @@
 		C9C30E39222521860085DADA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WP7B8WJ8Z;
 				INFOPLIST_FILE = ImageProviderTests/Info.plist;
@@ -409,6 +533,7 @@
 		C9C30E3A222521860085DADA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WP7B8WJ8Z;
 				INFOPLIST_FILE = ImageProviderTests/Info.plist;
