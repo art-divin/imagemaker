@@ -13,7 +13,7 @@ public class Locationer : NSObject {
     
     fileprivate var callback : ((CLLocationCoordinate2D?, Error?) -> Void)
     
-    init(callback: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
+    public init(callback: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
         self.callback = callback
     }
     

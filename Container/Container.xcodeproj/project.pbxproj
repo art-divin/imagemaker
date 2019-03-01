@@ -11,7 +11,7 @@
 		C9C30E81222523C60085DADA /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E80222523C60085DADA /* ContainerTests.swift */; };
 		C9C30E83222523C60085DADA /* Container.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C30E75222523C60085DADA /* Container.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9C30E8E222524980085DADA /* Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E8C222524980085DADA /* Container.xcdatamodeld */; };
-		C9C30E91222524D40085DADA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E90222524D40085DADA /* Image.swift */; };
+		C9C30E91222524D40085DADA /* ImageCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E90222524D40085DADA /* ImageCoreData.swift */; };
 		C9C30E9A22252F780085DADA /* LocationTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E9922252F780085DADA /* LocationTransformer.swift */; };
 		C9C30E9C222571020085DADA /* ImagePure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E9B222571020085DADA /* ImagePure.swift */; };
 		C9C30E9E22257E1A0085DADA /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30E9D22257E1A0085DADA /* Container.swift */; };
@@ -36,7 +36,7 @@
 		C9C30E80222523C60085DADA /* ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 		C9C30E82222523C60085DADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C30E8D222524980085DADA /* Container.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Container.xcdatamodel; sourceTree = "<group>"; };
-		C9C30E90222524D40085DADA /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		C9C30E90222524D40085DADA /* ImageCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCoreData.swift; sourceTree = "<group>"; };
 		C9C30E9922252F780085DADA /* LocationTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTransformer.swift; sourceTree = "<group>"; };
 		C9C30E9B222571020085DADA /* ImagePure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePure.swift; sourceTree = "<group>"; };
 		C9C30E9D22257E1A0085DADA /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		C9C30E8F222524AB0085DADA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C9C30E90222524D40085DADA /* Image.swift */,
+				C9C30E90222524D40085DADA /* ImageCoreData.swift */,
 				C9C30E9B222571020085DADA /* ImagePure.swift */,
 				C9C30E9F22257E450085DADA /* ContainerSupport.swift */,
 			);
@@ -233,7 +233,7 @@
 				C9C30E9C222571020085DADA /* ImagePure.swift in Sources */,
 				C9C30E9E22257E1A0085DADA /* Container.swift in Sources */,
 				C9C30E8E222524980085DADA /* Container.xcdatamodeld in Sources */,
-				C9C30E91222524D40085DADA /* Image.swift in Sources */,
+				C9C30E91222524D40085DADA /* ImageCoreData.swift in Sources */,
 				C9C30EA022257E450085DADA /* ContainerSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

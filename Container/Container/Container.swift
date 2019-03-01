@@ -16,7 +16,7 @@ public class Container {
     private var coordinator : NSPersistentStoreCoordinator?
     private var mainContext: NSManagedObjectContext?
     
-    init(storeURL: URL? = nil) {
+    public init(storeURL: URL? = nil) {
         self.storeURL = storeURL
         self.setup()
     }
@@ -24,6 +24,7 @@ public class Container {
     private func setup() {
         self.setupModel()
         self.setupCoordinator(self.storeDescription())
+        self.setupContext()
     }
     
     private func storeDescription() -> NSPersistentStoreDescription {
@@ -42,13 +43,16 @@ public class Container {
         return NSPersistentStoreDescription(url: storeURL)
     }
     
+    private func setupContext() {
+        self.mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        self.mainContext?.persistentStoreCoordinator = self.coordinator
+    }
+    
     private func setupCoordinator(_ store: NSPersistentStoreDescription) {
         guard let model = self.model else {
             fatalError("unable to detect NSManagedObjectModel")
         }
         self.coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        
-        
         self.coordinator?.addPersistentStore(with: store) { _, error in
             if error != nil {
                 // TODO: remove existing store; create new file
@@ -64,12 +68,15 @@ public class Container {
         self.model = NSManagedObjectModel(contentsOf: url)
     }
     
-    public func new<T: ContainerSupport>(_ type: T, completion: @escaping (T) -> Void) {
+    public func new<T: ContainerSupport>(_ type: T.Type, completion: @escaping (T) -> Void) {
         guard let context = self.mainContext else {
             fatalError("invalid main context!")
         }
+        guard let internalT = type as? ContainerSupportInternal.Type else {
+            fatalError("invalid object graph!")
+        }
         context.perform {
-            let retVal = NSEntityDescription.insertNewObject(forEntityName: ImageCoreData.coredata_entityName, into: context)
+            let retVal = NSEntityDescription.insertNewObject(forEntityName: internalT.coredata_entityName, into: context)
             if !(retVal is T) {
                 fatalError("unable to insert new object!")
             }
@@ -77,12 +84,15 @@ public class Container {
         }
     }
     
-    public func stored<T: ContainerSupport>(_ type: T, completion: @escaping ([T]?, Error?) -> Void) {
+    public func stored<T: ContainerSupport>(_ type: T.Type, completion: @escaping ([T]?, Error?) -> Void) {
         guard let context = self.mainContext else {
             fatalError("invalid main context!")
         }
+        guard let internalT = type as? ContainerSupportInternal.Type else {
+            fatalError("invalid object graph!")
+        }
         context.perform {
-            let request = NSFetchRequest<NSManagedObject>(entityName: T.coredata_entityName)
+            let request = NSFetchRequest<NSManagedObject>(entityName: internalT.coredata_entityName)
             do {
                 let retVal : [T] = try request.execute().map {
                     guard $0 is T else {

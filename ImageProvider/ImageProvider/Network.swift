@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import OAuth2
 
 class Network : NSObject {
     
@@ -25,7 +24,6 @@ class Network : NSObject {
         }
     }
     
-    fileprivate var oauth : OAuth2CodeGrant?
     private var session : URLSession?
     private var callbacks : NSMapTable<NSURL, Callback>
     
@@ -37,51 +35,6 @@ class Network : NSObject {
     
     private func setup() {
         self.setupNetwork()
-        self.setupOAuth()
-    }
-    
-    private func setupOAuth() {
-        /*
-         // key b04a2cd4b1bc452376e787febb159ff5
-         // secret ba9d917a3f25fe6b
-         // https://api.flickr.com/services/rest/?method=flickr.test.echo&name=value
-         */
-        // create an instance and retain it
-//        let oauthswift = OAuth2(
-//            consumerKey:    "b04a2cd4b1bc452376e787febb159ff5",
-//            consumerSecret: "ba9d917a3f25fe6b",
-//            authorizeUrl:   "https://www.flickr.com/services/oauth/authorize",
-//            responseType:   "token"
-//        )
-        
-        
-//            requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
-//            authorizeUrl:    "https://www.flickr.com/services/oauth/authorize",
-//            accessTokenUrl:  "https://www.flickr.com/services/oauth/access_token"
-//
-//        // authorize
-        //        let handle = oauthswift.authorize(
-//        withCallbackURL: URL(string: "oauth-swift://oauth-callback/instagram")!,
-//        scope: "likes+comments", state:"INSTAGRAM",
-//        success: { credential, response, parameters in
-//            print(credential.oauthToken)
-//            // Do your request
-//        },
-//        failure: { error in
-//            print(error.localizedDescription)
-//        }
-//        )
-//        https://api.flickr.com/services/rest/?method=flickr.photos.geo.photosForLocation&api_key=&longitude=180.0&latitude=180.0
-        self.oauth = OAuth2CodeGrant(settings: [
-            "client_id": "Imagemaker",
-            "client_secret": "ba9d917a3f25fe6b",
-            "authorize_uri": "https://www.flickr.com/services/oauth/authorize",
-            "token_uri": "https://www.flickr.com/services/oauth/access_token",   // code grant only
-            "redirect_uris": ["com.imagemaker.ImageProvider://oauth/callback"],   // register your own "myapp" scheme in Info.plist
-            ] as OAuth2JSON)
-        self.oauth?.authorize(callback: { (json, error) in
-            print(json)
-        })
     }
     
     private func setupNetwork() {
@@ -98,48 +51,12 @@ class Network : NSObject {
     }
     
     private func start(_ url: URL) {
-        
-        /*
-         let req = oauth2.request(forURL: <# resource URL #>)
-         // set up your request, e.g. `req.HTTPMethod = "POST"`
-         let task = oauth2.session.dataTaskWithRequest(req) { data, response, error in
-         if let error = error {
-         // something went wrong, check the error
-         }
-         else {
-         // check the response and the data
-         // you have just received data with an OAuth2-signed request!
-         }
-         }
-         task.resume()
-         */
-        if !(self.oauth?.hasUnexpiredAccessToken() ?? false) {
-            return
-        }
-        
-        let request = self.oauth?.request(forURL: url)
-        
-        
         let task = self.session?.downloadTask(with: url)
         task?.resume()
     }
     
     func remove(url: URL) {
         self.callbacks.removeObject(forKey: url as NSURL)
-    }
-    
-}
-
-extension Network {
-    
-    func authorize() {
-        
-//        let url = try oauth2.authorizeURL(params: <# custom parameters or nil #>)
-//        try oauth2.authorizer.openAuthorizeURLInBrowser(url)
-//        oauth2.afterAuthorizeOrFail = { authParameters, error in
-            // inspect error or oauth2.accessToken / authParameters or do something else
-//        }
-
     }
     
 }

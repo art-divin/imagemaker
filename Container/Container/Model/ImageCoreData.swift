@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageCoreData.swift
 //  Container
 //
 //  Created by Ruslan Alikhamov on 26.02.19.
@@ -48,7 +48,7 @@ class ImageCoreData : NSManagedObject, ImagePure {
     
 }
 
-extension ImageCoreData : ContainerSupport {
+extension Image : ContainerSupportInternal {
     
     static var coredata_entityName: String {
         return "ImageCoreData"

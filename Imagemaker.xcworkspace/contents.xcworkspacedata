@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Combiner/Combiner.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Locationer/Locationer.xcodeproj">
    </FileRef>
    <FileRef

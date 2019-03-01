@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
+@objc(LocationTransformer)
 class LocationTransformer : ValueTransformer {
     
     override class func transformedValueClass() -> AnyClass {

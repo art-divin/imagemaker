@@ -9,10 +9,18 @@
 import Foundation
 import CoreLocation
 
-public protocol ImagePure {
+public protocol ImagePure : ContainerSupport {
     
     var name: String? { get set }
     var url: String? { get set }
     var location: CLLocationCoordinate2D? { get set }
+    
+}
+
+public class Image : ImagePure, ContainerSupport {
+    
+    public var name: String?
+    public var url: String?
+    public var location: CLLocationCoordinate2D?
     
 }

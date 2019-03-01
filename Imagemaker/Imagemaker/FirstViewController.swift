@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Combiner
 
-class FirstViewController: UIViewController {
-
+class FirstViewController: UIViewController, CombinerSupport {
+    
+    var combiner: Combiner?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.combiner?.currentImages { images in
+//            print(error)
+        }
     }
 
 

@@ -8,7 +8,9 @@
 
 import Foundation
 
-public protocol ContainerSupport {
+public protocol ContainerSupport {}
+
+protocol ContainerSupportInternal : ContainerSupport {
     
     static var coredata_entityName : String { get }
     

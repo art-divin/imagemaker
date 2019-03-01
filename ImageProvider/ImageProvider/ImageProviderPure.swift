@@ -14,3 +14,11 @@ public protocol ImageProviderPure {
     func image(for: CLLocationCoordinate2D, completion: @escaping (URL?, Error?) -> Void)
     
 }
+
+public class ImageProvider {
+    
+    public static var current : ImageProviderPure = {
+        return ImageProviderFlickr()
+    }()
+    
+}

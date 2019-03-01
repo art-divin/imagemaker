@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import Combiner
+
+protocol CombinerSupport {
+    
+    var combiner : Combiner? { get set }
+    
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var combiner : Combiner? = Combiner()
+    
+    func setup() {
+        self.combiner?.combine()
+        self.setupCombinerSupport()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.setup()
         return true
     }
 
@@ -41,6 +53,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
 
+extension AppDelegate : CombinerSupport {
+    
+    func setupCombinerSupport() {
+        guard let controllers = self.tabBarController?.viewControllers else {
+            return
+        }
+        for controller in controllers {
+            if var casted = controller as? CombinerSupport {
+                casted.combiner = self.combiner
+            }
+        }
+    }
+    
+}
+
+extension AppDelegate {
+    
+    var tabBarController : UITabBarController? {
+        return self.window?.rootViewController as? UITabBarController
+    }
+    
 }
 
