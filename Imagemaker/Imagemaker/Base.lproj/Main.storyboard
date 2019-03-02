@@ -27,17 +27,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94d-1A-MmN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94d-1A-MmN">
                                 <rect key="frame" x="22" y="516" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="start:" destination="9pv-A4-QxB" eventType="touchUpInside" id="LKY-ja-5xG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jB-uk-C5K">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jB-uk-C5K">
                                 <rect key="frame" x="320" y="516" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stop:" destination="9pv-A4-QxB" eventType="touchUpInside" id="qu3-fr-IMi"/>
@@ -46,12 +44,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="94d-1A-MmN" firstAttribute="baseline" secondItem="9jB-uk-C5K" secondAttribute="baseline" id="83X-qV-BwE"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="9jB-uk-C5K" secondAttribute="trailing" constant="23" id="FUH-7J-PcJ"/>
                             <constraint firstItem="IbC-fQ-VJg" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="39" id="KOd-VB-qZE"/>
                             <constraint firstItem="IbC-fQ-VJg" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="146" id="LLQ-Rn-lss"/>
                             <constraint firstItem="kO8-vw-4Hl" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="QKH-DG-sdy"/>
+                            <constraint firstItem="94d-1A-MmN" firstAttribute="top" secondItem="kO8-vw-4Hl" secondAttribute="bottom" constant="66" id="SiB-aB-3bA"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="kO8-vw-4Hl" secondAttribute="bottom" constant="168" id="UPz-pm-Sg9"/>
                             <constraint firstItem="IbC-fQ-VJg" firstAttribute="centerX" secondItem="kO8-vw-4Hl" secondAttribute="centerX" id="YeI-Wx-Odl"/>
                             <constraint firstItem="kO8-vw-4Hl" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="106" id="aOR-RK-gp6"/>
+                            <constraint firstItem="94d-1A-MmN" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="22" id="bBd-rA-IlD"/>
                             <constraint firstItem="kO8-vw-4Hl" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="dWW-OO-p3L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>

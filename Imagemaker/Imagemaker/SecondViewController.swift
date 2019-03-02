@@ -19,10 +19,18 @@ class SecondViewController: UIViewController, CombinerSupport {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    private func reloadData() {
         self.combiner?.currentImages { images in
             self.images = images
             self.collectionView?.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reloadData()
     }
 
 

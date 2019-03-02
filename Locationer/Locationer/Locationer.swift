@@ -12,29 +12,34 @@ import CoreLocation
 public class Locationer : NSObject {
     
     fileprivate var callback : ((CLLocationCoordinate2D?, Error?) -> Void)
+    private var locationManager : CLLocationManager?
     
     public init(callback: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
         self.callback = callback
+        super.init()
+        self.setupLocationManager()
     }
     
-    lazy var locationManager : CLLocationManager = {
+    func setupLocationManager() {
         let retVal = CLLocationManager()
         retVal.activityType = .fitness
         retVal.allowsBackgroundLocationUpdates = true
         retVal.delegate = self
         retVal.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        retVal.requestAlwaysAuthorization()
-        return retVal
-    }()
+        retVal.distanceFilter = 100
+        self.locationManager = retVal
+    }
     
     public func start() {
         if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            self.locationManager.startUpdatingLocation()
+            self.locationManager?.startUpdatingLocation()
+        } else {
+            self.locationManager?.requestAlwaysAuthorization()
         }
     }
     
     public func stop() {
-        self.locationManager.stopUpdatingLocation()
+        self.locationManager?.stopUpdatingLocation()
     }
     
 }
@@ -42,14 +47,16 @@ public class Locationer : NSObject {
 extension Locationer : CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .authorizedAlways {
+        if status != .authorizedAlways && status != .notDetermined {
             fatalError("unable to work with such authorization")
+        } else if status == .authorizedAlways {
+            self.locationManager?.startUpdatingLocation()
         }
-        self.locationManager.startUpdatingLocation()
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let mostRecent = locations.last
+        // TODO: filter out old location updates by -[CLLocation date]
         self.callback(mostRecent?.coordinate, nil)
     }
     
