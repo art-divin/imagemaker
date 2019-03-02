@@ -34,24 +34,29 @@ public class Combiner {
         self.imageProvider = ImageProvider.current
     }
     
-//    public func finishAuthorization(_ url: URL) {
-//        self.imageProvider?.finishAuthorization(url)
-//    }
-//    
-//    public func authorize(completion: @escaping (Error?) -> Void) {
-//        self.imageProvider?.authorize(completion: { (error) in
-//            // TODO: remove fetchImage
-////            40.704101, -74.015383
-//            self.fetchImage(for: CLLocationCoordinate2D(latitude: -74.015383, longitude: 40.704101))
-//            completion(error)
-//        })
-//    }
+    private func saveLocally(_ fileURL: URL, location: CLLocationCoordinate2D) {
+        self.container?.new(Image.self) { image in
+            do {
+                let data = try Data(contentsOf: fileURL)
+                image.image = data
+            } catch {
+                fatalError("invalid remote data provided: \(fileURL)")
+            }
+            image.location = location
+            self.container?.save() { error in
+                if error != nil {
+                    fatalError("unable to save local storage: \(error!)")
+                }
+            }
+        }
+    }
     
     public func fetchImage(for location: CLLocationCoordinate2D) {
         self.imageProvider?.image(for: location) { fileURL, error in
-            
-            print(fileURL)
-            
+            if error != nil || fileURL == nil {
+                fatalError("unable to fetch remote images")
+            }
+            self.saveLocally(fileURL!, location: location)
         }
     }
     

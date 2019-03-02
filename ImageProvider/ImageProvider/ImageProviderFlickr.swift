@@ -20,9 +20,8 @@ extension ImageProviderFlickr : ImageProviderPure {
     public func image(for coordinate: CLLocationCoordinate2D, completion: @escaping (URL?, Error?) -> Void) {
         // key b04a2cd4b1bc452376e787febb159ff5
         // secret ba9d917a3f25fe6b
-//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bee7662074e30c833c12825bba0e8747&lat=40.704111&lon=-74.015389&format=json&nojsoncallback=1        //40.704101, -74.015383
-        let comps = NSURLComponents(string: "https://api.flickr.com/services/rest")
-        let method = NSURLQueryItem(name: "method", value: "flickr.places.find")
+        let comps = NSURLComponents(string: "https://api.flickr.com/services/rest/")
+        let method = NSURLQueryItem(name: "method", value: "flickr.photos.search")
         let apiKey = NSURLQueryItem(name: "api_key", value: "b04a2cd4b1bc452376e787febb159ff5")
         let longitude = NSURLQueryItem(name: "lon", value: "\(coordinate.longitude)")
         let latitude = NSURLQueryItem(name: "lat", value: "\(coordinate.latitude)")
@@ -34,11 +33,28 @@ extension ImageProviderFlickr : ImageProviderPure {
             fatalError("unable to generate URL: \(String(describing: comps))")
         }
         self.network.add(url: url) { fileURL, error in
-            
-            // TODO: move to local file storage within this callback
-            print(url)
+            if error != nil || fileURL == nil {
+                fatalError("invalid server response!")
+            }
+            do {
+                let data = try Data(contentsOf: fileURL!)
+                if let object = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                    let photos = object["photos"] as? [String : Any], let photo = photos["photo"] as? [[String : Any]], let first = photo.first {
+                    
+                    let image = ImageFlickr(dictionary: first)
+                }
+            } catch {
+                fatalError("unable to parse given file: \(fileURL!)")
+            }
+            completion(fileURL, error)
             
         }
+    }
+    
+    private func image(for: ImageFlickr, completion: @escaping (URL, Error?) -> Void) {
+        
+        
+        
     }
     
 }

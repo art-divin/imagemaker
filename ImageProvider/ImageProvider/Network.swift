@@ -28,7 +28,7 @@ class Network : NSObject {
     private var callbacks : NSMapTable<NSURL, Callback>
     
     override init() {
-        self.callbacks = NSMapTable.strongToWeakObjects()
+        self.callbacks = NSMapTable.strongToStrongObjects()
         super.init()
         self.setup()
     }
@@ -41,7 +41,7 @@ class Network : NSObject {
         let configuration = URLSessionConfiguration.default
         configuration.shouldUseExtendedBackgroundIdleMode = true
         configuration.timeoutIntervalForRequest = 10.0
-        self.session = URLSession(configuration: configuration)
+        self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: .main)
     }
     
     func add(url: URL, callback: @escaping ((URL?, Error?) -> Void)) {

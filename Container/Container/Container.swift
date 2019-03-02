@@ -72,15 +72,14 @@ public class Container {
         guard let context = self.mainContext else {
             fatalError("invalid main context!")
         }
-        guard let internalT = type as? ContainerSupportInternal.Type else {
-            fatalError("invalid object graph!")
+        if !(type is ContainerSupportInternal.Type) {
+            fatalError("unsupported class supplied!")
         }
         context.perform {
-            let retVal = NSEntityDescription.insertNewObject(forEntityName: internalT.coredata_entityName, into: context)
-            if !(retVal is T) {
+            guard let retVal = NSEntityDescription.insertNewObject(forEntityName: (type as! ContainerSupportInternal.Type).coredata_entityName, into: context) as? T else {
                 fatalError("unable to insert new object!")
             }
-            completion(retVal as! T)
+            completion(retVal)
         }
     }
     
@@ -105,7 +104,15 @@ public class Container {
                 completion(nil, error)
             }
         }
-        
+    }
+    
+    public func save(completion: @escaping (Error?) -> Void) {
+        do {
+            try self.mainContext?.save()
+            completion(nil)
+        } catch {
+            completion(error)
+        }
     }
     
 }

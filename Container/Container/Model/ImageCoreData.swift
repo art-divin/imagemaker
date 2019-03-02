@@ -42,9 +42,19 @@ class ImageCoreData : NSManagedObject, ImagePure {
         }
     }
     
+    var image: Data? {
+        get {
+            return self.coredata_image as Data?
+        }
+        set {
+            self.coredata_image = newValue as NSData?
+        }
+    }
+    
     @NSManaged var coredata_name: NSString?
     @NSManaged var coredata_url: NSString?
     @NSManaged var coredata_location: NSValue?
+    @NSManaged var coredata_image: NSData?
     
 }
 
