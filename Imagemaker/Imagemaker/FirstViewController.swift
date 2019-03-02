@@ -12,15 +12,25 @@ import CoreLocation
 
 class FirstViewController: UIViewController, CombinerSupport {
     
+    @IBOutlet var imageView : UIImageView?
     var combiner: Combiner?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.combiner?.currentImages { images in
-
+        self.combiner?.lastImage { image in
+            if let data = image?.data {
+                self.imageView?.image = UIImage(data: data)
+            }
         }
     }
-
-
+    
+    @IBAction func start(_ sender: Any?) {
+        self.combiner?.start()
+    }
+    
+    @IBAction func stop(_ sender: Any?) {
+        self.combiner?.stop()
+    }
+    
 }
 

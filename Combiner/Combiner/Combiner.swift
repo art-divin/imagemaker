@@ -34,6 +34,68 @@ public class Combiner {
         self.imageProvider = ImageProvider.current
     }
     
+    private func saveLocally(_ fileURL: URL) {
+        // we need to copy file because in the next runloop it might not exist
+        let fileURL = self.moveTemporarily(fileURL)
+        self.container?.new(Image.self, returning: ImagePure.self) { image in
+            do {
+                let data = try Data(contentsOf: fileURL)
+                image.data = data
+                self.removeTemporarily(fileURL)
+            } catch {
+                fatalError("invalid remote data provided: \(fileURL)")
+            }
+            self.container?.save() { error in
+                if error != nil {
+                    fatalError("unable to save local storage: \(error!)")
+                }
+            }
+        }
+    }
+    
+    public func start() {
+        self.locationer?.start()
+    }
+    
+    public func stop() {
+        self.locationer?.stop()
+    }
+    
+    private func fetchImage(for location: CLLocationCoordinate2D) {
+        self.imageProvider?.image(for: location) { fileURL, error in
+            if error != nil || fileURL == nil {
+                fatalError("unable to fetch remote images")
+            }
+            self.saveLocally(fileURL!)
+        }
+    }
+    
+    public func currentImages(completion: @escaping ([ImagePure]?) -> Void) {
+        self.container?.stored(Image.self, returning: ImagePure.self) { images, error in
+            if error != nil {
+                fatalError("unable to fetch local images")
+            }
+            
+            let sorted = images?.sorted() { image1, image2 in
+                let ti1 = image1.created?.timeIntervalSince1970
+                let ti2 = image2.created?.timeIntervalSince1970
+                return ti1 ?? 0.0 > ti2 ?? 0.0
+            }
+            
+            completion(sorted)
+        }
+    }
+    
+    public func lastImage(completion: @escaping (ImagePure?) -> Void) {
+        self.currentImages() { images in
+            completion(images?.first)
+        }
+    }
+    
+}
+
+extension Combiner {
+    
     private func moveTemporarily(_ url: URL) -> URL {
         let fileManager = FileManager.default
         var tempURL : URL
@@ -52,43 +114,6 @@ public class Combiner {
             try FileManager.default.removeItem(at: url)
         } catch {
             fatalError("unable to remove item: \(url)")
-        }
-    }
-    
-    private func saveLocally(_ fileURL: URL) {
-        // we need to copy file because in the next runloop it might not exist
-        let fileURL = self.moveTemporarily(fileURL)
-        self.container?.new(Image.self, returning: ImagePure.self) { image in
-            do {
-                let data = try Data(contentsOf: fileURL)
-                image.image = data
-                self.removeTemporarily(fileURL)
-            } catch {
-                fatalError("invalid remote data provided: \(fileURL)")
-            }
-            self.container?.save() { error in
-                if error != nil {
-                    fatalError("unable to save local storage: \(error!)")
-                }
-            }
-        }
-    }
-    
-    public func fetchImage(for location: CLLocationCoordinate2D) {
-        self.imageProvider?.image(for: location) { fileURL, error in
-            if error != nil || fileURL == nil {
-                fatalError("unable to fetch remote images")
-            }
-            self.saveLocally(fileURL!)
-        }
-    }
-    
-    public func currentImages(completion: @escaping ([ImagePure]?) -> Void) {
-        self.container?.stored(Image.self, returning: ImagePure.self) { images, error in
-            if error != nil {
-                fatalError("unable to fetch local images")
-            }
-            completion(images)
         }
     }
     

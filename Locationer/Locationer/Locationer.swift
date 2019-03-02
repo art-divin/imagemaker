@@ -27,6 +27,16 @@ public class Locationer : NSObject {
         return retVal
     }()
     
+    public func start() {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    public func stop() {
+        self.locationManager.stopUpdatingLocation()
+    }
+    
 }
 
 extension Locationer : CLLocationManagerDelegate {
@@ -35,7 +45,7 @@ extension Locationer : CLLocationManagerDelegate {
         if status != .authorizedAlways {
             fatalError("unable to work with such authorization")
         }
-        manager.startUpdatingLocation()
+        self.locationManager.startUpdatingLocation()
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

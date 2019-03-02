@@ -15,6 +15,7 @@
 		C921A32A2228395500485936 /* Container.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C921A3232228394000485936 /* Container.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C921A32B2228395500485936 /* ImageProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C921A3252228394000485936 /* ImageProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C921A32C2228395500485936 /* Locationer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C921A3272228394000485936 /* Locationer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C9C2905C222AF70F000E21F6 /* SecondViewControllerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C2905B222AF70F000E21F6 /* SecondViewControllerCollectionCell.swift */; };
 		C9C30DF62225210A0085DADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF52225210A0085DADA /* AppDelegate.swift */; };
 		C9C30DF82225210A0085DADA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF72225210A0085DADA /* FirstViewController.swift */; };
 		C9C30DFA2225210A0085DADA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C30DF92225210A0085DADA /* SecondViewController.swift */; };
@@ -56,6 +57,7 @@
 		C921A3232228394000485936 /* Container.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Container.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C921A3252228394000485936 /* ImageProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C921A3272228394000485936 /* Locationer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Locationer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9C2905B222AF70F000E21F6 /* SecondViewControllerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewControllerCollectionCell.swift; sourceTree = "<group>"; };
 		C9C30DF22225210A0085DADA /* Imagemaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagemaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C30DF52225210A0085DADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9C30DF72225210A0085DADA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				C9C30DF52225210A0085DADA /* AppDelegate.swift */,
 				C9C30DF72225210A0085DADA /* FirstViewController.swift */,
 				C9C30DF92225210A0085DADA /* SecondViewController.swift */,
+				C9C2905B222AF70F000E21F6 /* SecondViewControllerCollectionCell.swift */,
 				C9C30DFB2225210A0085DADA /* Main.storyboard */,
 				C9C30DFE2225210C0085DADA /* Assets.xcassets */,
 				C9C30E002225210C0085DADA /* LaunchScreen.storyboard */,
@@ -253,6 +256,7 @@
 			files = (
 				C9C30DFA2225210A0085DADA /* SecondViewController.swift in Sources */,
 				C9C30DF62225210A0085DADA /* AppDelegate.swift in Sources */,
+				C9C2905C222AF70F000E21F6 /* SecondViewControllerCollectionCell.swift in Sources */,
 				C9C30DF82225210A0085DADA /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

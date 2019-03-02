@@ -13,7 +13,8 @@ public protocol ImagePure : ContainerSupport {
     
     var name: String? { get set }
     var url: String? { get set }
-    var image: Data? { get set }
+    var data: Data? { get set }
+    var created: Date? { get set }
     
 }
 
@@ -21,6 +22,7 @@ public class Image : ImagePure {
     
     public var name: String?
     public var url: String?
-    public var image: Data? 
+    public var data: Data?
+    public var created: Date?
     
 }

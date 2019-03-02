@@ -31,7 +31,7 @@ class ImageCoreData : NSManagedObject, ImagePure {
         }
     }
     
-    var image: Data? {
+    var data: Data? {
         get {
             return self.coredata_image as Data?
         }
@@ -40,9 +40,24 @@ class ImageCoreData : NSManagedObject, ImagePure {
         }
     }
     
+    var created: Date? {
+        get {
+            return self.coredata_created as Date?
+        }
+        set {
+            self.coredata_created = newValue as NSDate?
+        }
+    }
+    
     @NSManaged var coredata_name: NSString?
     @NSManaged var coredata_url: NSString?
     @NSManaged var coredata_image: NSData?
+    @NSManaged var coredata_created: NSDate?
+ 
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.created = Date()
+    }
     
 }
 
