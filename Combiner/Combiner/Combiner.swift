@@ -34,15 +34,38 @@ public class Combiner {
         self.imageProvider = ImageProvider.current
     }
     
-    private func saveLocally(_ fileURL: URL, location: CLLocationCoordinate2D) {
-        self.container?.new(Image.self) { image in
+    private func moveTemporarily(_ url: URL) -> URL {
+        let fileManager = FileManager.default
+        var tempURL : URL
+        do {
+            tempURL = try fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            tempURL.appendPathComponent(url.lastPathComponent)
+            try fileManager.moveItem(at: url, to: tempURL)
+        } catch {
+            fatalError("unable to move file: \(url)")
+        }
+        return tempURL
+    }
+    
+    private func removeTemporarily(_ url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch {
+            fatalError("unable to remove item: \(url)")
+        }
+    }
+    
+    private func saveLocally(_ fileURL: URL) {
+        // we need to copy file because in the next runloop it might not exist
+        let fileURL = self.moveTemporarily(fileURL)
+        self.container?.new(Image.self, returning: ImagePure.self) { image in
             do {
                 let data = try Data(contentsOf: fileURL)
                 image.image = data
+                self.removeTemporarily(fileURL)
             } catch {
                 fatalError("invalid remote data provided: \(fileURL)")
             }
-            image.location = location
             self.container?.save() { error in
                 if error != nil {
                     fatalError("unable to save local storage: \(error!)")
@@ -56,12 +79,12 @@ public class Combiner {
             if error != nil || fileURL == nil {
                 fatalError("unable to fetch remote images")
             }
-            self.saveLocally(fileURL!, location: location)
+            self.saveLocally(fileURL!)
         }
     }
     
-    public func currentImages(completion: @escaping ([Image]?) -> Void) {
-        self.container?.stored(Image.self) { images, error in
+    public func currentImages(completion: @escaping ([ImagePure]?) -> Void) {
+        self.container?.stored(Image.self, returning: ImagePure.self) { images, error in
             if error != nil {
                 fatalError("unable to fetch local images")
             }

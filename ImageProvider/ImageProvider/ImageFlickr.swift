@@ -27,10 +27,12 @@ class ImageFlickr {
         case secret = "secret"
     }
     
-    var serverID : String?
-    var farmID : String?
-    var identifier : String?
-    var secret : String?
+    private var serverID : String?
+    private var farmID : String?
+    private var identifier : String?
+    private var secret : String?
+    private let `extension` = ".jpg"
+    private let size = "z"
     
     init(dictionary: [String : Any]) {
         self.validate(dictionary)
@@ -46,6 +48,20 @@ class ImageFlickr {
                 fatalError("invalid configuration supplied!")
             }
         }
+    }
+    
+    var photoURL : URL {
+        guard let farmID = self.farmID, let serverID = self.serverID, let identifier = self.identifier, let secret = self.secret else {
+            fatalError("invalid configuration supplied!")
+        }
+        let comps = NSURLComponents()
+        comps.scheme = "https"
+        comps.host = "farm\(farmID).staticflickr.com"
+        comps.path = "/\(serverID)/\(identifier)_\(secret)_\(self.size)\(self.extension)"
+        guard let url = comps.url else {
+            fatalError("unable to generate image url: \(comps)")
+        }
+        return url
     }
     
 }

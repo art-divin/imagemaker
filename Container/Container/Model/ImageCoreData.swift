@@ -31,17 +31,6 @@ class ImageCoreData : NSManagedObject, ImagePure {
         }
     }
     
-    var location: CLLocationCoordinate2D? {
-        get {
-            let transformer = LocationTransformer()
-            return transformer.reverseTransformedValue(self.coredata_location) as? CLLocationCoordinate2D
-        }
-        set {
-            let transformer = LocationTransformer()
-            self.coredata_location = transformer.transformedValue(newValue) as? NSValue
-        }
-    }
-    
     var image: Data? {
         get {
             return self.coredata_image as Data?
@@ -53,7 +42,6 @@ class ImageCoreData : NSManagedObject, ImagePure {
     
     @NSManaged var coredata_name: NSString?
     @NSManaged var coredata_url: NSString?
-    @NSManaged var coredata_location: NSValue?
     @NSManaged var coredata_image: NSData?
     
 }

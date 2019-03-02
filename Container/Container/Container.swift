@@ -68,7 +68,7 @@ public class Container {
         self.model = NSManagedObjectModel(contentsOf: url)
     }
     
-    public func new<T: ContainerSupport>(_ type: T.Type, completion: @escaping (T) -> Void) {
+    public func new<T: ContainerSupport, R: Any>(_ type: T.Type, returning: R.Type, completion: @escaping (inout R) -> Void) {
         guard let context = self.mainContext else {
             fatalError("invalid main context!")
         }
@@ -76,14 +76,18 @@ public class Container {
             fatalError("unsupported class supplied!")
         }
         context.perform {
-            guard let retVal = NSEntityDescription.insertNewObject(forEntityName: (type as! ContainerSupportInternal.Type).coredata_entityName, into: context) as? T else {
-                fatalError("unable to insert new object!")
+            let retVal = NSEntityDescription.insertNewObject(forEntityName: (type as! ContainerSupportInternal.Type).coredata_entityName, into: context)
+            let mirror = Mirror(reflecting: retVal)
+            if let _ = mirror.subjectType as? R {
+                fatalError("invalid protocol requirement specified!")
             }
-            completion(retVal)
+            // due to previous check, we are guaranteed that force cast is safe
+            var castedRetVal = (retVal as Any) as! R
+            completion(&castedRetVal)
         }
     }
     
-    public func stored<T: ContainerSupport>(_ type: T.Type, completion: @escaping ([T]?, Error?) -> Void) {
+    public func stored<T: ContainerSupport, R>(_ type: T.Type, returning: R.Type, completion: @escaping ([R]?, Error?) -> Void) {
         guard let context = self.mainContext else {
             fatalError("invalid main context!")
         }
@@ -93,11 +97,13 @@ public class Container {
         context.perform {
             let request = NSFetchRequest<NSManagedObject>(entityName: internalT.coredata_entityName)
             do {
-                let retVal : [T] = try request.execute().map {
-                    guard $0 is T else {
-                        fatalError("invalid object returned: \($0)")
+                let retVal : [R] = try request.execute().map { object in
+                    let mirror = Mirror(reflecting: object)
+                    if let _ = mirror.subjectType as? R {
+                        fatalError("invalid object returned: \(object)")
                     }
-                    return $0 as! T
+                    // due to previous check, we are guaranteed that force cast is safe
+                    return (object as Any) as! R
                 }
                 completion(retVal, nil)
             } catch let error {

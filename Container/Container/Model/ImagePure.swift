@@ -13,16 +13,14 @@ public protocol ImagePure : ContainerSupport {
     
     var name: String? { get set }
     var url: String? { get set }
-    var location: CLLocationCoordinate2D? { get set }
     var image: Data? { get set }
     
 }
 
-public class Image : ImagePure, ContainerSupport {
+public class Image : ImagePure {
     
     public var name: String?
     public var url: String?
-    public var location: CLLocationCoordinate2D?
     public var image: Data? 
     
 }

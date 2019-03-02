@@ -39,22 +39,26 @@ extension ImageProviderFlickr : ImageProviderPure {
             do {
                 let data = try Data(contentsOf: fileURL!)
                 if let object = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                    let photos = object["photos"] as? [String : Any], let photo = photos["photo"] as? [[String : Any]], let first = photo.first {
-                    
-                    let image = ImageFlickr(dictionary: first)
+                    let photos = object["photos"] as? [String : Any], let photo = photos["photo"] as? [[String : Any]], let any = photo.randomElement() {
+                    let image = ImageFlickr(dictionary: any)
+                    self.image(for: image, completion: completion)
+                } else {
+                    fatalError("unable to parse given response: \(String(describing: String(data: data, encoding: .utf8)))")
                 }
             } catch {
                 fatalError("unable to parse given file: \(fileURL!)")
             }
-            completion(fileURL, error)
-            
         }
     }
     
-    private func image(for: ImageFlickr, completion: @escaping (URL, Error?) -> Void) {
-        
-        
-        
+    private func image(for image: ImageFlickr, completion: @escaping (URL, Error?) -> Void) {
+        let url = image.photoURL
+        self.network.add(url: url) { (fileURL, error) in
+            if error != nil || fileURL == nil {
+                fatalError("unable to fetch image: \(url)")
+            }
+            completion(fileURL!, error)
+        }
     }
     
 }
