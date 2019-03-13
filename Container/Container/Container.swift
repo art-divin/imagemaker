@@ -77,8 +77,9 @@ public class Container {
         }
         context.perform {
             let retVal = NSEntityDescription.insertNewObject(forEntityName: (type as! ContainerSupportInternal.Type).coredata_entityName, into: context)
-            let mirror = Mirror(reflecting: retVal)
-            if let _ = mirror.subjectType as? R {
+            // FIXME: This check fails, even through ImageCoreData, which is returned by the insert,
+            // supports the protocol. Not sure how to test exactly atm.
+            if retVal is R {
                 fatalError("invalid protocol requirement specified!")
             }
             // due to previous check, we are guaranteed that force cast is safe

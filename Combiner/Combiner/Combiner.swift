@@ -61,7 +61,7 @@ public class Combiner {
         self.locationer?.stop()
     }
     
-    private func fetchImage(for location: CLLocationCoordinate2D) {
+    public func fetchImage(for location: CLLocationCoordinate2D) {
         self.imageProvider?.image(for: location) { fileURL, error in
             if error != nil || fileURL == nil {
                 fatalError("unable to fetch remote images")

@@ -17,6 +17,8 @@ class FirstViewController: UIViewController, CombinerSupport {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.combiner?.fetchImage(for: CLLocationCoordinate2D(latitude: 40.704101, longitude: -74.015383))
+
         self.combiner?.lastImage { image in
             if let data = image?.data {
                 self.imageView?.image = UIImage(data: data)
